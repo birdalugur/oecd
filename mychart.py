@@ -17,4 +17,8 @@ def export_chart(df: pd.DataFrame, xtitle: str, ytitle: str, title: str, file_na
                       xaxis_title=xtitle,
                       yaxis_title=ytitle)
 
+    tickvals = df.index.to_list()
+    ticktext = [d.strftime('%Y-%B') for d in df.index]
+    fig.update_xaxes(tickvals=tickvals, ticktext=ticktext)
+
     plot(fig, filename=r"{}.html".format(file_name), auto_open=False)
